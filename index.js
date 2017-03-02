@@ -2,7 +2,7 @@ const BtnModule = require('bindings')('ButtonModule');
 const EventEmitter = require('events').EventEmitter;
 const inherits = require('util').inherits;
 /**
- * Creates an instance of TemperatureSensor.
+ * Creates an instance of ButtonModule.
  * @param {int} port The port number where this component us connected.
  * @returns {ButtonModule} The ButtonModule object.
  */
