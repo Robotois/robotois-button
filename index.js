@@ -4,7 +4,7 @@ const inherits = require('util').inherits;
 /**
  * Creates an instance of TemperatureSensor.
  * @param {int} port The port number where this component us connected.
- * @returns {ButtonModule}.
+ * @returns {ButtonModule} The ButtonModule object.
  */
 function ButtonModule(port) {
   const self = this;
