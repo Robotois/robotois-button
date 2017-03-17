@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   Button.cpp
  * Author: yova
- * 
+ *
  * Created on 8 de septiembre de 2016, 06:04 PM
  */
 
@@ -27,7 +27,7 @@ uint8_t Button::getValue(){
 }
 
 void Button::release(){
-    printf("[ButtonModule] => Released\n");
     IOHeader->release();
     delete IOHeader;
+    printf("[ButtonModule] => Released\n");
 }

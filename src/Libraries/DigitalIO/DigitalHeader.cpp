@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   DigitalHeader.cpp
  * Author: yova
- * 
+ *
  * Created on 25 de mayo de 2016, 12:25 PM
  */
 
@@ -43,7 +43,7 @@ DigitalHeader::DigitalHeader(uint8_t _io_header,uint8_t _io1_dir,uint8_t _io2_di
             printf("Wrong Header selection...\n");
             return;
     }
-    
+
     bcm_init();
     io1_dir = _io1_dir;
     io2_dir = _io2_dir;
@@ -170,7 +170,7 @@ void DigitalHeader::asInput(uint8_t io_pin){
 }
 
 /**
- * Write the given state to the output pin, it is preferred to use the defined 
+ * Write the given state to the output pin, it is preferred to use the defined
  * values in the BCM2835 library: HIGH(1), LOW(0).
  * @param io_pin
  * @param state
@@ -180,7 +180,7 @@ void DigitalHeader::write(uint8_t io_pin,uint8_t state){
 }
 
 /**
- * Write the given state to the output pin, it is preferred to use the defined 
+ * Write the given state to the output pin, it is preferred to use the defined
  * values in the BCM2835 library: HIGH(1), LOW(0).
  * @param io_pin
  */
@@ -196,11 +196,11 @@ void DigitalHeader::riseEnable(uint8_t io_pin){
 }
 
 /**
- * Returns TRUE if the rise event was detected in the given IO Pin, otherwise it 
- * will return FALSE. It is important to consider that once the event is detected, 
- * this event is disabled so it won't trigger again and produce undesirable behavior. 
+ * Returns TRUE if the rise event was detected in the given IO Pin, otherwise it
+ * will return FALSE. It is important to consider that once the event is detected,
+ * this event is disabled so it won't trigger again and produce undesirable behavior.
  * @param io_pin
- * @return 
+ * @return
  */
 bool DigitalHeader::riseDetected(uint8_t io_pin){
     if(bcm2835_gpio_eds(io_pin)){
@@ -208,7 +208,7 @@ bool DigitalHeader::riseDetected(uint8_t io_pin){
         bcm2835_gpio_clr_aren(io_pin);
         return true;
     }
-    
+
     return false;
 }
 
@@ -220,11 +220,11 @@ void DigitalHeader::fallEnable(uint8_t io_pin){
 }
 
 /**
- * Returns TRUE if the fall event was detected in the given IO Pin, otherwise it 
- * will return FALSE. It is important to consider that once the event is detected, 
- * this event is disabled so it won't trigger again and produce undesirable behavior. 
+ * Returns TRUE if the fall event was detected in the given IO Pin, otherwise it
+ * will return FALSE. It is important to consider that once the event is detected,
+ * this event is disabled so it won't trigger again and produce undesirable behavior.
  * @param io_pin
- * @return 
+ * @return
  */
 bool DigitalHeader::fallDetected(uint8_t io_pin){
     if(bcm2835_gpio_eds(io_pin)){
@@ -232,7 +232,7 @@ bool DigitalHeader::fallDetected(uint8_t io_pin){
         bcm2835_gpio_clr_afen(io_pin);
         return true;
     }
-    
+
     return false;
 }
 
@@ -243,14 +243,14 @@ void DigitalHeader::bcm_init(){
     if (!bcm2835_init()){
         printf("BCM2835 Error!!...\n");
         exit(1);
-    }    
+    }
 }
 
 void DigitalHeader::bcm_end(){
-    bcm2835_close();    
+    bcm2835_close();
 }
 
-void DigitalHeader::release(){    
+void DigitalHeader::release(){
     if(io1_dir == AS_INPUT){
         bcm2835_gpio_set_pud(io_pin1, BCM2835_GPIO_PUD_OFF);
     }else{
@@ -261,5 +261,5 @@ void DigitalHeader::release(){
     }else{
         bcm2835_gpio_write(io_pin2, 0);
     }
-    bcm_end();
+    // bcm_end();
 }
