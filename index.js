@@ -1,55 +1,61 @@
-var buttonModule = require('bindings')('ButtonModule');
-var EventEmitter = require('events').EventEmitter;
-var inherits = require('util').inherits;
-
-function ButtonModule(header){
+const BtnModule = require('bindings')('ButtonModule');
+const EventEmitter = require('events').EventEmitter;
+const inherits = require('util').inherits;
+/**
+ * Creates an instance of ButtonModule.
+ * @param {int} port The port number where this component us connected.
+ * @returns {ButtonModule} The ButtonModule object.
+ */
+function ButtonModule(port) {
+  const self = this;
   EventEmitter.call(this);
-  var _self = this;
-  this.button = new buttonModule(header);
+  this.button = new BtnModule(port);
 
-  process.on('SIGINT', function () {
-    _self.button.release();
+  process.on('SIGINT', () => {
+    self.button.release();
   });
 
-  process.on('SIGTERM', function () {
-    _self.button.release();
+  process.on('SIGTERM', () => {
+    self.button.release();
   });
 }
 
-ButtonModule.prototype.getValue = function () {
+ButtonModule.prototype.getValue = function getValue() {
   return this.button.getValue();
 };
 
-ButtonModule.prototype.enableEvents = function () {
-  var _self = this;
-  var prevState = _self.button.getValue(),currentState;
+ButtonModule.prototype.enableEvents = function enableEvents() {
+  const self = this;
+  let prevState = self.button.getValue();
+  let currentState;
 
-  if(!this.eventInterval){
-    this.eventInterval = setInterval(()=>{
-      currentState = _self.button.getValue();
-      if(currentState !== prevState){
-        _self.emit('change', currentState);
+  if (!this.eventInterval) {
+    this.eventInterval = setInterval(() => {
+      currentState = self.button.getValue();
+      if (currentState !== prevState) {
+        self.emit('change', currentState);
         prevState = currentState;
       }
     }, 100); // Tomar mediciones cada 100ms
   }
-}
+};
 
-ButtonModule.prototype.when = function(callback){
+ButtonModule.prototype.when = function when(callback) {
   this.enableEvents();
   this.on('change', (state) => {
     if (state) {
-      console.log('Botón: ' + state);
+      /* eslint-disable no-console */
+      console.log(`Botón: ${state}`);
       callback();
     }
   });
-}
+};
 
-ButtonModule.prototype.release = function () {
+ButtonModule.prototype.release = function release() {
   clearInterval(this.eventInterval);
   this.button.release();
-}
+};
 
-inherits(ButtonModule,EventEmitter);
+inherits(ButtonModule, EventEmitter);
 
 module.exports = ButtonModule;

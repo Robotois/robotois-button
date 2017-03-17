@@ -1,15 +1,27 @@
 {
-  "name": "leds_module",
-  "version": "1.0.0",
-  "description": "",
+  "name": "robotois-button",
+  "version": "1.0.1",
+  "description": "Node Library to communicate and control the robotois button module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "keywords": [
+    "button",
+    "robotois",
+    "IOT"
+  ],
+  "author": "yovany@robotois.com",
+  "contributors": [
+    {
+      "name": "Armando Gonzalez",
+      "email": "iam@armando.mx",
+      "url": "http://armando.mx/"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
-    "bindings": "^1.2.1",
+    "bindings": "^1.2.1"
   },
   "gypfile": true,
   "devDependencies": {
