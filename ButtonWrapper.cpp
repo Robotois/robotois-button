@@ -10,7 +10,6 @@ ButtonWrapper::ButtonWrapper(uint8_t _header){
 }
 
 ButtonWrapper::~ButtonWrapper(){
-  // delete button;
 }
 
 void ButtonWrapper::release(const v8::FunctionCallbackInfo<v8::Value>& args){
@@ -33,9 +32,6 @@ void ButtonWrapper::Init(){
   // Prototype
   NODE_SET_PROTOTYPE_METHOD(tpl,"getValue",getValue);
   NODE_SET_PROTOTYPE_METHOD(tpl,"release",release);
-  // NODE_SET_PROTOTYPE_METHOD(tpl,"BCMEnd",BCMEnd);
-  // tpl->PrototypeTemplate()->Set(Nan::New("temperature").ToLocalChecked(),
-  //   Nan::New<v8::FunctionTemplate>(Temperature)->GetFunction());
 
   constructor.Reset(isolate,tpl->GetFunction());
 }
@@ -45,9 +41,6 @@ void ButtonWrapper::New(const FunctionCallbackInfo<Value>& args){
   HandleScope scope(isolate);
 
   uint8_t _header = 0x01;
-  // If there are two params: First Param => i2c address, second => Port number
-  // - Only one Param, this means that the given param is the Port Number,
-  // printf("Args Count: %d\n",args.Length());
   ButtonWrapper* obj;
   uint8_t _argc = args.Length();
   if(args.IsConstructCall()){
@@ -83,7 +76,6 @@ void ButtonWrapper::NewInstance(const FunctionCallbackInfo<Value>& args) {
   HandleScope scope(isolate);
 
   uint8_t _argc = args.Length();
-  // printf("Args Count: %d\n",_argc);
   if(_argc != 1){
     isolate->ThrowException(Exception::TypeError(
     String::NewFromUtf8(isolate, "Wrong arguments...")));
@@ -107,9 +99,3 @@ void ButtonWrapper::getValue(const FunctionCallbackInfo<Value>& args){
 
   args.GetReturnValue().Set(Number::New(isolate,temp_obj->button->getValue()));
 }
-
-// void Temperature(){
-//   OpticalDistanceSensor temp;
-//   temp.selectPort(3);
-//   printf("Temp Input: %0.2f\n",temp.getTemperature());
-// }
