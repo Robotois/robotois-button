@@ -36,7 +36,7 @@ ButtonModule.prototype.enableEvents = function enableEvents() {
         self.emit('change', currentState);
         prevState = currentState;
       }
-    }, 100); // Tomar mediciones cada 100ms
+    }, 250); // Tomar mediciones cada 250ms
   }
 };
 
