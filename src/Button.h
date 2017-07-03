@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Button.h
  * Author: yova
  *
@@ -9,16 +9,16 @@
 #define	BUTTON_H
 
 #include <bcm2835.h>
-#include "../../Libraries/DigitalIO/DigitalHeader.h"
+#include "./libraries/robotois-digital-header/DigitalHeader.h"
 
 class Button {
 public:
     Button(uint8_t header);
     Button(const Button& orig);
     virtual ~Button();
-    
+
     uint8_t getValue();
-    
+
     void release();
 private:
     DigitalHeader *IOHeader;
@@ -27,4 +27,3 @@ private:
 };
 
 #endif	/* BUTTON_H */
-

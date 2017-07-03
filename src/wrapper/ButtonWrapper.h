@@ -3,7 +3,7 @@
 
 #include <node.h>
 #include <node_object_wrap.h>
-#include "src/Modules/Button/Button.h"
+#include "../Button.h"
 
 class ButtonWrapper : public node::ObjectWrap {
 public:

@@ -44,8 +44,6 @@ ButtonModule.prototype.when = function when(callback) {
   this.enableEvents();
   this.on('change', (state) => {
     if (state) {
-      /* eslint-disable no-console */
-      console.log(`Botón: ${state}`);
       callback();
     }
   });

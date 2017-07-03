@@ -23,7 +23,7 @@ Button::~Button() {
 uint8_t Button::getValue(){
     state = IOHeader->io1_read();
     // - Using pull-up resistors, it would return the inverted value.
-    return (state ^ (uint8_t)0x01);
+    return state;
 }
 
 void Button::release(){
