@@ -1,8 +1,9 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/build
+node_modules
+#tests/practicas/node_modules
+build
 
 # misc
 .DS_Store
