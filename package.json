@@ -1,6 +1,6 @@
 {
   "name": "robotois-button",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Node Library to communicate and control the robotois button module",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,11 @@
   ],
   "author": "yovany@robotois.com",
   "contributors": [
+    {
+      "name": "Jose yovany",
+      "email": "yovany.lg@gmail.com",
+      "url": "http://github.com/yovany-lg"
+    },
     {
       "name": "Armando Gonzalez",
       "email": "iam@armando.mx",

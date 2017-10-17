@@ -13,7 +13,6 @@ function ButtonModule(port) {
   const self = this;
   EventEmitter.call(this);
   this.button = new BtnModule(port);
-  this.prevState = false;
 
   process.on('SIGINT', () => {
     self.button.release();
@@ -29,12 +28,18 @@ ButtonModule.prototype.getValue = function getValue() {
 };
 
 ButtonModule.prototype.enableEvents = function enableEvents() {
-  if (!this.eventInterval) {
-    this.eventInterval = setInterval(() => {
-      const value = this.button.getValue();
-      this.emit('state', value, statusMap[value]);
-    }, 200); // Tomar mediciones cada 250ms
+  this.prevValue = this.button.getValue();
+  this.emit('change', this.prevValue, statusMap[this.prevValue]);
+  const self = this;
+  function run() {
+    const currentValue = self.button.getValue();
+    if (self.prevValue !== currentValue) {
+      self.emit('change', currentValue, statusMap[currentValue]);
+      self.prevValue = currentValue;
+    }
+    setImmediate(run);
   }
+  run();
 };
 
 ButtonModule.prototype.release = function release() {

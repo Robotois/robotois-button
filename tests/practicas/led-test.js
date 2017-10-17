@@ -6,7 +6,7 @@ const led = new LED(4);
 const buttons = new Button(6);
 buttons.enableEvents();
 
-buttons.on('state', (value, state) => {
+buttons.on('change', (value, state) => {
   /* eslint-disable no-console */
   console.log(`Button State: ${value} - ${state}`);
   led.write(value);
