@@ -1,7 +1,12 @@
 const Button = require('../index.js');
 
+const mqttConfig = {
+  host: 'localhost',
+  instance: 1,
+};
+
 const buttons = new Button(5);
-buttons.enableEvents();
+buttons.enableEvents(mqttConfig);
 
 buttons.on('change', (_state) => {
   /* eslint-disable no-console */
