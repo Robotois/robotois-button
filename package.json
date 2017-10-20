@@ -1,6 +1,6 @@
 {
   "name": "robotois-button",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Node Library to communicate and control the robotois button module",
   "main": "index.js",
   "scripts": {
