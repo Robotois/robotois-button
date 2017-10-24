@@ -1,6 +1,6 @@
 {
   "name": "robotois-button",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Node Library to communicate and control the robotois button module",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,11 @@
       "url": "http://armando.mx/"
     }
   ],
+  "homepage": "https://github.com/Robotois/robotois-button",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Robotois/robotois-button.git"
+  },
   "license": "ISC",
   "dependencies": {
     "bindings": "^1.2.1",

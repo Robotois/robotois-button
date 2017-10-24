@@ -15,6 +15,7 @@ function ButtonModule(port) {
   const self = this;
   EventEmitter.call(this);
   this.button = new BtnModule(port);
+  this.prevValue = -1;
 
   process.on('SIGINT', () => {
     self.button.release();
@@ -34,27 +35,23 @@ ButtonModule.prototype.publishNow = function publishNow() {
 };
 
 ButtonModule.prototype.enableEvents = function enableEvents(mqttConfig) {
-  let prevValue = this.button.getValue();
   if (mqttConfig) {
     this.mqttClient = mqttConfig.mqttClient;
     this.myTopic = `digitalInputs/button${mqttConfig.instance}`;
-    this.mqttClient.publish('registerTopic', this.myTopic);
-    this.mqttClient.publish(this.myTopic, prevValue.toString());
   }
   const self = this;
   function run() {
     const currentValue = self.button.getValue();
-    if (prevValue !== currentValue) {
+    if (self.prevValue !== currentValue) {
       self.emit('change', currentValue, statusMap[currentValue]);
       if (self.mqttClient) {
         self.mqttClient.publish(self.myTopic, currentValue.toString());
       }
-      prevValue = currentValue;
+      self.prevValue = currentValue;
     }
     setImmediate(run);
   }
-  this.emit('change', prevValue, statusMap[prevValue]);
-  run();
+  setTimeout(run, 1000);
 };
 
 ButtonModule.prototype.release = function release() {
