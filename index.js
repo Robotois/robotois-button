@@ -14,7 +14,7 @@ const statusMap = ['Liberado', 'Presionado'];
 function ButtonModule(port) {
   const self = this;
   EventEmitter.call(this);
-  this.button = new BtnModule(port);
+  this.button = new BtnModule.MyObject(port);
   this.prevValue = -1;
 
   process.on('SIGINT', () => {

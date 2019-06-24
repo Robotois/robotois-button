@@ -5,7 +5,7 @@ const mqttConfig = {
   instance: 1,
 };
 
-const buttons = new Button(5);
+const buttons = new Button(6);
 buttons.enableEvents(mqttConfig);
 
 buttons.on('change', (_state) => {

@@ -31,8 +31,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "bindings": "^1.2.1",
-    "mqtt": "^2.13.1"
+    "bindings": "^1.5.0",
+    "mqtt": "^3.0.0"
   },
   "gypfile": true,
   "devDependencies": {
